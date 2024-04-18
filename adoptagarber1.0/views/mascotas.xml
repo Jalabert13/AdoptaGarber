@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- Modificar la vista para mostrar los datos en el menú -->
+    <record id="view_mascotas_tree" model="ir.ui.view">
+        <field name="name">garber.pets.tree</field>
+        <field name="model">garber.pets</field>
+        <field name="arch" type="xml">
+            <tree string="Mascotas">
+                <field name="id"/>
+                <field name="name"/>
+                <field name="raza"/>
+                <field name="clase"/>
+                <field name="tamanyo"/>
+                <field name="fecha_ingreso"/>
+                <field name="sexo"/>
+                <field name="peso"/>
+                <field name="altura"/>
+                <field name="edad"/>
+                <field name="localidad"/>
+                <field name="fecha_nac"/>
+                <field name="image" widget="image"/>                    <!-- Agrega más campos aquí según tus necesidades -->
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_mascotas_form" model="ir.ui.view">
+        <field name="name">garber.pets.form</field>
+        <field name="model">garber.pets</field>
+        <field name="arch" type="xml">
+            <form string="Mascota">
+                <group>
+                    <field name="id"/>
+                    <field name="name"/>
+                    <field name="raza"/>
+                    <field name="clase"/>
+                    <field name="tamanyo"/>
+                    <field name="fecha_ingreso"/>
+                    <field name="sexo"/>
+                    <field name="peso"/>
+                    <field name="altura"/>
+                    <field name="edad"/>
+                    <field name="localidad"/>
+                    <field name="fecha_nac"/>
+                    <field name="image" widget="image"/>                    <!-- Agrega más campos aquí según tus necesidades -->
+                </group>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_adopcion_mascotas" model="ir.actions.act_window">
+        <field name="name">Mascotas Disponibles</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">garber.pets</field>
+        <field name="view_mode">tree,form</field>
+        <field name="view_id" ref="view_mascotas_tree"/>
+    </record>
+
+    <menuitem id="menu_mascotas"
+              name="Mascotas Disponibles"
+              parent="menu_adopcion_mascotas"
+              action="action_adopcion_mascotas" 
+              sequence="10"/>
+
+</odoo>

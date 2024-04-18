@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+<odoo>
+        
+        <report
+            id="report_garber_pets_card"
+            model="garber.pets"
+            string="Informe de Mascotas"
+            report_type="qweb-pdf"
+            name="adoptagarber.report_pet"
+            file="adoptagarber.report_pet"
+        />
+
+</odoo>

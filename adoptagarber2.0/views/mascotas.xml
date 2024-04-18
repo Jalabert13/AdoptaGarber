@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    
+    <!-- Modificar la vista para mostrar los datos en el menú -->
+    <record id="view_mascotas_tree" model="ir.ui.view">
+        <field name="name">garber.pets.tree</field>
+        <field name="model">garber.pets</field>
+        <field name="arch" type="xml">
+            <tree string="Mascotas">
+                <field name="id"/>
+                <field name="name"/>
+                <field name="raza"/>
+                <field name="clase"/>
+                <field name="tamanyo"/>
+                <field name="fecha_ingreso"/>
+                <field name="sexo"/>
+                <field name="peso"/>
+                <field name="altura"/>
+                <field name="edad"/>
+                <field name="localidad"/>
+                <field name="fecha_nac"/>
+                <field name="asociacion" />
+                <field name="image" widget="image" options='{"size": [100, 100]}'/>                    <!-- Agrega más campos aquí según tus necesidades -->
+            </tree>
+        </field>
+    </record>
+    
+<record id="view_mascotas_form" model="ir.ui.view">
+    <field name="name">garber.pets.form</field>
+    <field name="model">garber.pets</field>
+    <field name="arch" type="xml">
+        <form string="Mascota">
+            <!-- Agregando un sheet -->
+            <sheet>
+                <!-- Agregando un header -->
+                <header>
+                    <h2>Mascota</h2>
+                </header>
+                <!-- Agrupando los campos -->                   
+                <group>
+                    <group>
+                        <field name="name"/>
+                        <field name="raza"/>
+                        <field name="clase"/>
+                        <field name="tamanyo"/>
+                        <field name="fecha_ingreso"/>
+                    </group>
+                    <group>
+                        <field name="sexo"/>
+                        <field name="peso"/>
+                        <field name="altura"/>
+                        <field name="edad"/>
+                        <field name="localidad"/>
+                        <field name="fecha_nac"/>
+                        <field name="image" widget="image"/>                    <!-- Agrega más campos aquí según tus necesidades -->
+                    </group>
+                </group>
+            </sheet>
+        </form>
+    </field>
+</record>
+
+
+<record id="view_mascotas_kanban" model="ir.ui.view">
+    <field name="name">garber.pets.kanban</field>
+    <field name="model">garber.pets</field>
+    <field name="arch" type="xml">
+        <kanban class="o_kanban" sample="1">
+            <field name="name"/>
+            <field name="raza"/>
+            <field name="image"/>
+            <field name="sexo"/>W
+            <templates>
+                <t t-name="kanban-box">
+                    <div t-attf-class="oe_kanban_global_click"> 
+                        <div class="o_kanban_image">
+                            <img t-att-src="kanban_image('garber.pets', 'image', record.id.value)" class="o_image_64_max" height="52"/>
+                        </div>
+                        <div class="oe_kanban_details">
+                            <strong class="o_kanban_record_title">
+                                <field name="name"/>
+                            </strong>
+                            <div t-if="record.sexo.value">
+                                <span>field1: </span><t t-esc="record.raza.value"/>
+                            </div>
+                        </div>
+                    </div>
+                </t>
+            </templates>    
+        </kanban>
+    </field>
+
+</record>
+
+    <record id="adoptagarber_mascotas_search" model="ir.ui.view">
+        <field name="name">garber.pets.search</field>
+        <field name="model">garber.pets</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="name"/>
+                <field name="raza"/>
+                <field name="clase"/>
+                <field name="tamanyo"/>
+                <field name="fecha_ingreso"/>
+                <field name="sexo"/>
+                <field name="peso"/>
+                <field name="altura"/>
+                <field name="edad"/>
+                <field name="localidad"/>
+                <field name="fecha_nac"/>
+            </search>
+        </field>
+    </record>
+
+    <record id="action_adopcion_mascotas" model="ir.actions.act_window">
+        <field name="name">Mascotas Disponibles</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">garber.pets</field>
+        <field name="view_mode">tree,form,kanban</field>
+        <field name="view_id" ref="view_mascotas_tree"/> <!-- Asigna la vista de árbol -->
+    </record>
+
+    <menuitem id="menu_mascotas"
+              name="Mascotas Disponibles"
+              parent="menu_adopcion_mascotas"
+              action="action_adopcion_mascotas" 
+              sequence="10"/>
+
+</odoo>

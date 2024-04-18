@@ -1,0 +1,11 @@
+<odoo>
+    <record id="action_print_pdf" model="ir.actions.report">
+        <field name="name"> Pet pdf </field>
+        <field name="model">garber.pets</field>
+        <field name="report_type"> qweb-pdf</field>
+        <field name="report_name"> adoptagarber.report_print_pdf </field>
+        <field name="report_file"> adoptagarber.report_print_pdf </field>
+        <field name="binding_model_id" eval="False"/>
+        <field name="binding_type">report</field>
+    </record>  
+</odoo>

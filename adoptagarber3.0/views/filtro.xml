@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="filtro_busqueda_animales" name="Adopciones">
+    <t t-call="website.layout">
+        <xpath expr="//form[@action='/adopta-results']" position="after">
+            <div class="container mt-5 p-4 border border-dark p-2">
+                <h2 class="text-center mb-4">Filtro de Búsqueda de Animales en el Albergue</h2>
+                <form action="/adopta-results" method="GET">
+                    <div class="row mb-3">
+                        <div class="form-group col-md-6">
+                            <label for="tipo">Tipo de animal:</label>
+                            <select class="form-control" id="clase" name="clase">
+                                <option value="">Selecciona un tipo</option>
+                                <t t-foreach="env['garber.pets'].search([]).mapped('clase')" t-as="tipo">
+                                    <option t-if="tipo" t-att-value="tipo"><t t-esc="tipo"/></option>
+                                </t>
+                            </select>
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label for="raza">Raza del animal:</label>
+                            <select class="form-control" id="raza" name="raza">
+                                <option value="">Selecciona un tipo</option>
+                                <t t-foreach="env['garber.pets'].search([]).mapped('raza')" t-as="raza">
+                                    <option t-if="raza" t-att-value="raza"><t t-esc="raza"/></option>
+                                </t>
+                            </select>                            
+                        </div>
+                    </div>
+                    <div class="row mb-3">
+                        <div class="form-group col-md-6">
+                            <label for="edad_min">Edad mínima:</label>
+                            <input type="number" class="form-control" id="edad_min" name="edad_min" min="0" placeholder="Edad mínima"/>
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label for="edad_max">Edad máxima:</label>
+                            <input type="number" class="form-control" id="edad_max" name="edad_max" min="0" placeholder="Edad máxima"/>
+                        </div>
+                    </div>
+                    <button type="submit" class="btn btn-warning mt-3">Buscar</button>
+                </form>
+            </div>
+        </xpath>
+    </t>
+</template>
+
+</odoo>

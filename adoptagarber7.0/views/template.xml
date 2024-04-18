@@ -1,0 +1,241 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="pet_single" name="Detalles de la mascota">
+        <t t-call="website.layout">
+            <style>
+                .custom-card {
+                    font-size: 16px;
+                    height: auto;
+                }
+
+                .info-card {
+                    text-align: center;
+                }
+
+                .img-container {
+                    position: relative;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    height: 40rem;
+                }
+
+                .mini-image {
+                    width: 70px;
+                    height: auto;
+                    margin-top: 10px;
+                    cursor: pointer;
+                }
+
+                .fullscreen-img {
+                    position: fixed;
+                    top: 0;
+                    left: 0;
+                    width: 100%;
+                    height: 100%;
+                    background-color: rgba(0, 0, 0, 0.8);
+                    display: none;
+                    justify-content: center;
+                    align-items: center;
+                    z-index: 999;
+                }
+
+                .fullscreen-img img {
+                    max-width: 90%;
+                    max-height: 90%;
+                }
+
+                .prev-slide-btn,
+                .next-slide-btn {
+                    position: absolute;
+                    top: 50%;
+                    transform: translateY(-50%);
+                    z-index: 999;
+                    background: none;
+                    border: none;
+                    font-size: 2rem;
+                    color: white;
+                    cursor: pointer;
+                }
+
+                .prev-slide-btn {
+                    left: 10px;
+                }
+
+                .next-slide-btn {
+                    right: 10px;
+                }
+            </style>
+            <div class="oe_structure">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-6 mt-3 mb-3">
+                            <div class="card h-auto custom-card">
+                                <div class="img-container">
+                                    <img class="img img-fluid d-block mx-auto mb-1 p-2" t-att-src="'data:image/png;base64,' + mascota.image.decode()" alt=""/>
+                                </div>
+
+                                <div class="card-body bg-white info-card">
+                                    <t t-if="mascota.image_ids">
+                                        <div class="text-center mt-3">
+                                            <t t-foreach="mascota.image_ids" t-as="image">
+                                                <img class="mini-image p-1 border rounded border-secondary" t-att-src="'data:image/png;base64,' + image.image.decode()" alt=""/>
+                                            </t>
+                                        </div>
+                                    </t>
+                                    <div class="text-center">
+                                        <h5 class="card-title text-center mb-0"><t t-esc="mascota.name"/></h5>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="fullscreen-img">
+                            <img id="fullscreen-image" src="" alt=""/>
+                        </div>
+
+                        <div class="col-md-6 mt-3 mb-3 overflow-auto custom-card info-card">
+                            <div class="card h-100">
+                                <div class="card-body bg-white">
+                                    <h5 class="card-title">Información</h5>
+                                    <table class="table">
+                                        <tbody>
+                                            <tr>
+                                                <th scope="row">Clase:</th>
+                                                <td><t t-esc="mascota.pet_class"/></td>
+                                            </tr>
+                                            <tr>
+                                                <th scope="row">Raza:</th>
+                                                <td><t t-esc="mascota.breed"/></td>
+                                            </tr>
+                                            <tr>
+                                                <th scope="row">Localidad:</th>
+                                                <td><t t-esc="mascota.location"/></td>
+                                            </tr>
+                                            <tr>
+                                                <th scope="row">Asociación:</th>
+                                                <td><t t-esc="mascota.asociation.name"/></td>
+                                            </tr>
+
+                                            <tr>
+                                                <th scope="row">Tamaño:</th>
+                                                <td><t t-esc="mascota.size"/></td>
+                                            </tr>
+                                            <tr>
+                                                <th scope="row">Fecha de Ingreso:</th>
+                                                <td><t t-esc="mascota.entry_date"/></td>
+                                            </tr>
+                                            <tr>
+                                                <th scope="row">Sexo:</th>
+                                                <td><t t-esc="mascota.sex"/></td>
+                                            </tr>
+                                            <tr>
+                                                <th scope="row">Peso:</th>
+                                                <td><t t-esc="mascota.weight"/></td>
+                                            </tr>
+                                            <tr>
+                                                <th scope="row">Altura:</th>
+                                                <td><t t-esc="mascota.height"/></td>
+                                            </tr>
+                                            <tr>
+                                                <th scope="row">Fecha de Nacimiento:</th>
+                                                <td><t t-esc="mascota.birth_date"/></td>
+                                            </tr>
+                                            <tr>
+                                                <th scope="row">Teléfono de Contacto</th>
+                                                <td><t t-esc="mascota.contact_phone"/></td>
+                                            </tr>
+                                            <tr>
+                                                <th scope="row">Edad:</th>
+                                                <td><t t-esc="mascota.age"/></td>
+                                            </tr>
+                                            <!-- Botón de contacto por WhatsApp -->
+                                            <tr>
+                                                <td>
+                                                    <a class="btn btn-success mb-3" style="width: 100%; text-align: center;" t-attf-href="https://wa.me/#{mascota.contact_phone}?text=Hola%20quiero%20contactar%20sobre%20una%20mascota%20en%20adopción" target="_blank">Contactar por WhatsApp</a>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-12 mt-3 mb-3">
+                            <div class="card">
+                                <div class="card-body bg-white">
+                                    <p class="card-text">Descripción: <t t-esc="mascota.description"/></p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                 
+  <section class="s_website_form pt-5 pb-5 o_colored_level" data-vcss="001" data-snippet="s_website_form" data-name="Formulario" data-success-mode="redirect" data-success-page="/contactus-thank-you" style="background-color: #f8f9fa;">
+    <div class="container">
+        <form action="/website/form/" method="GET" enctype="multipart/form-data" class="o_mark_required" data-mark="*" data-pre-fill="true" data-model_name="mail.mail">
+            <!-- Campo Oculto para mascota.id -->
+            <input type="hidden" name="mascota_id" t-att-value="mascota.id" />
+
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="name">
+                            <span class="s_website_form_label_content">Nombre y Apellidos</span>
+                            <span class="s_website_form_mark"> *</span>
+                        </label>
+                        <input type="text" class="form-control" name="name" required="1" data-fill-with="name" id="name"/>
+                    </div>
+                    <div class="form-group">
+                        <label for="phone">Número de teléfono</label>
+                        <input type="tel" class="form-control" name="phone" data-fill-with="phone" id="phone"/>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">
+                            <span class="s_website_form_label_content">Correo Electronico</span>
+                            <span class="s_website_form_mark"> *</span>
+                        </label>
+                        <input type="email" class="form-control" name="email_from" required="true" data-fill-with="email" id="email"/>
+                    </div>
+                    <div class="form-group">
+                        <label for="subject">Asunto</label>
+                        <select class="form-control" name="subject" id="subject">
+                            <option value="adopt">Adoptar a <t t-esc="mascota.name"/></option>
+                            <option value="sponsor">Apadrinar a <t t-esc="mascota.name"/></option>
+                            <option value="knowmore">Saber más sobre <t t-esc="mascota.name"/></option>
+                            <option value="others">Otro Asunto</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-md-6 o_colored_level">
+                    <div class="form-group">
+                        <label for="description">
+                            <span class="s_website_form_label_content">Su pregunta</span>
+                            <span class="s_website_form_mark"> *</span>
+                        </label>
+                        <textarea class="form-control" name="description" required="1" id="description" rows="3" style="height: 303px;"></textarea>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <button type="submit" class="btn btn-primary btn-lg">Enviar</button>
+                <span id="s_website_form_result"></span>
+            </div>
+        </form>
+    </div>
+</section>
+<section class="s_map pb56 pt56" data-map-type="m" data-map-zoom="12" data-snippet="s_map"  data-name="Mapa" data-map-address="mascota.location">
+    <div class="map_container o_not_editable">
+        <div class="css_non_editable_mode_hidden">
+            <div class="missing_option_warning alert alert-info rounded-0 fade show d-none d-print-none o_default_snippet_text">
+                Se debe especificar una dirección para que un mapa esté incrustado
+            </div>
+        </div>
+        
+        <iframe class="s_map_embedded o_not_editable" width="100%" height="100%" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" t-att-src="'https://maps.google.com/maps?q=' + mascota.location + '&amp;t=m&amp;z=12&amp;ie=UTF8&amp;iwloc=&amp;output=embed'"/><div class="s_map_color_filter"/>
+    </div>
+</section>
+
+                </div>
+            </div>
+            <script type="text/javascript" src="/adoptagarber/static/src/js/expand_image.js"></script>
+        </t>
+    </template>
+</odoo>

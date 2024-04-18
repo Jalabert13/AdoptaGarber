@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Chavales si veis esto es para importar datos directamente desde XML -->
+<odoo>
+    <data noupdate="1">
+        <record id="Sipote" model="garber.pets">
+            <field name="name">Sin verguenza</field>
+            <field name="breed">Gato</field>
+            <field name="pet_class">Clase 1</field>
+            <field name="size">Grande</field>
+            <field name="entry_date">2022-05-10</field>
+            <field name="sex">Macho</field>
+            <field name="weight">25.5</field>
+            <field name="height">70.0</field>
+            <field name="location">Alicante</field>
+            <field name="birth_date">2020-01-01</field>
+            <field name="description">Descripción de Sin verguenza</field>
+            <field name="contact_phone">123456789</field>
+            <field name="image_path">/opt/odoo16/odoo16/custom/adoptagarber/static/images/cats/4.png</field>
+        </record>
+        <record id="Arándano" model="garber.pets">
+            <field name="name">Mascota 2</field>
+            <field name="breed">Perro</field>
+            <field name="pet_class">Clase 2</field>
+            <field name="size">Pequeño</field>
+            <field name="entry_date">2022-06-15</field>
+            <field name="sex">Hembra</field>
+            <field name="weight">8.0</field>
+            <field name="height">40.0</field>
+            <field name="location">Valencia</field>
+            <field name="birth_date">2021-01-01</field>
+            <field name="description">Descripción de Mascota 2</field>
+            <field name="contact_phone">987654321</field>
+            <field name="image_path">/opt/odoo16/odoo16/custom/adoptagarber/static/images/dogs/4.png</field>
+        </record>
+    </data>
+</odoo>

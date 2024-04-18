@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+<template id="mascotas_table" name="Mascotas en Adopción">
+    <t t-call="website.layout">
+        <div class="container">
+            <table id="mascotas-table" class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th>Nombre</th>
+                        <th>Raza</th>
+                        <th>Clase</th>
+                        <th>Tamaño</th>
+                        <th>Fecha de Ingreso</th>
+                        <th>Sexo</th>
+                        <th>Peso</th>
+                        <th>Altura</th>
+                        <th>Edad</th>
+                        <th>Localidad</th>
+                        <th>Fecha de Nacimiento</th>
+                        <th>Imagen</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <t t-foreach="mascotas" t-as="mas">
+                        <tr>
+                            <td><t t-esc="mas.name"/></td>
+                            <td><t t-esc="mas.raza"/></td>
+                            <td><t t-esc="mas.clase"/></td>
+                            <td><t t-esc="mas.tamanyo"/></td>
+                            <td><t t-esc="mas.fecha_ingreso"/></td>
+                            <td><t t-esc="mas.sexo"/></td>
+                            <td><t t-esc="mas.peso"/></td>
+                            <td><t t-esc="mas.altura"/></td>
+                            <td><t t-esc="mas.edad"/></td>
+                            <td><t t-esc="mas.localidad"/></td>
+                            <td><t t-esc="mas.fecha_nac"/></td>
+                            <td>
+                            <img t-if="mas.image" t-att-src="'data:image/png;base64,%s' % mas.image"/>
+                            <t t-if="not mas.image">No hay imagen del animal</t>
+                            </td>
+
+                        </tr>
+                    </t>
+                </tbody>
+            </table>
+        </div>
+    </t>
+</template>
+</odoo>

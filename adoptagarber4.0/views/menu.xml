@@ -1,0 +1,35 @@
+<odoo>
+    <data>
+     
+        <!-- Menús -->
+        <menuitem id="menu_adopcion_mascotas"
+                  name="Adopción de Mascotas"
+                  sequence="10"/>
+
+        <menuitem id="menu_adopcion_root"
+                  name="Operaciones"
+                  parent="menu_adopcion_mascotas"
+                  sequence="10"/>
+
+        <menuitem id="menu_mascotas"
+                  name="Mascotas Adoptadas"
+                  parent="menu_adopcion_mascotas"
+                  sequence="10"/>
+
+         <menuitem id="menu_pruebas"
+                  name="Pruebas"
+                  parent="menu_adopcion_mascotas"
+                  sequence="10"/>
+                  
+        <menuitem id="menu_tecnico"
+                name="Técnico"
+                parent="menu_adopcion_mascotas"
+                sequence="10"/>
+
+        <menuitem id="menu_query"
+                name="SQL"
+                parent="menu_tecnico"
+                sequence="10"/>
+
+    </data>
+</odoo>

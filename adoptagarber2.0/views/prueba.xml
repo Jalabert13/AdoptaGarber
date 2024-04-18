@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!-- Heredar la vista de formulario de empleado -->
+        <record id="view_hr_employee_form_inherit" model="ir.ui.view">
+            <field name="name">hr.employee.form.inherit</field>
+            <field name="model">hr.employee</field>
+            <field name="inherit_id" ref="hr.view_employee_form"/>
+            <field name="arch" type="xml">
+                <!-- Agregar un nuevo campo -->
+                <xpath expr="//sheet" position="inside">
+                    <group>
+                        <field name="mi_campo"/>
+                    </group>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</odoo>

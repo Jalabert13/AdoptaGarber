@@ -1,0 +1,8 @@
+.custom-card {
+    font-size: 16px; /* Ajusta el tamaño del texto según sea necesario */
+    height: auto; /* Establece la altura automática para evitar el recorte del contenido */
+}
+
+.card-clickable {
+    cursor: pointer;
+}

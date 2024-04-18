@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+<template id="mascotas_prueba" name="Mascotas imagen">
+    <t t-call="website.layout">
+    <style>
+
+    .mascota_image img {
+        max-width: 100%; 
+        height: auto; 
+    }
+    </style>
+
+        <div class="container">
+            <div class="oe_structure">
+                <div class="row">
+                    <t t-foreach="mascotas" t-as="mascota">
+                        <div class="col-12">
+                            <div class="col-6">
+                                <span t-field="mascota.image" t-options="{'widget': 'image'}"/>
+                            </div>
+                            <div class="col-6">
+                                <div class="masc_detalles">
+                                    <h1 t-field="mascota.name"/>
+                                    <span class="masc_breed" t-field="mascota.breed" t-options="{'widget': 'breed'}"/>
+                                    <ul class="mas_dett_list">
+                                        <li><t t-esc="mascota.pet_class"/></li>
+                                        <li><t t-esc="mascota.location"/></li>
+                                        <li><t t-esc="mascota.age"/></li>
+                                        <li><t t-esc="mascota.size"/></li>
+                                        <li><t t-esc="mascota.weight"/></li>
+                                    </ul>
+                                    <span t-field="mascota.asociation.name"/> 
+                                    <div class="mascotas.button">
+                                        <button class="btn btn-primary" t-options="{'widget': 'button'}"/>
+                                    </div>   
+                                </div> 
+                            </div> 
+                        </div> 
+                    </t>
+                </div> 
+            </div>
+        </div>
+    </t>
+</template>
+
+<template id="pet_single" name="Detalles de la mascota">
+    <t t-call="website.layout">
+        <style>
+            .custom-card {
+                font-size: 16px; 
+                height: auto;
+            }
+
+            .info-card {
+                text-align: center;
+            }
+
+            .rounded-image-container {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                width: 100%;
+                height: 20rem;
+                overflow: hidden;
+                border-radius: 50%; 
+            }
+            
+            .rounded-image {
+                width: 100%;
+                height: auto;
+                border-radius: 50%; 
+            }
+            
+        </style>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6 mt-3 mb-3">
+                    <div class="card h-auto d-flex flex-column justify-content-between">
+                        <span class="img img-fluid d-block mx-auto mb-2" style="height:40rem;" t-field="mascota.image" t-options="{'widget': 'image'}"/>
+                        <div class="card-body bg-white">
+                            <div class="text-center">
+                                <h5 class="card-title text-center mb-0"><t t-esc="mascota.name"/></h5>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 mt-3 mb-3 overflow-auto custom-card info-card">
+                    <div class="card h-100">
+                        <div class="card-body bg-white">
+                            <h5 class="card-title">Información</h5>
+                            <table class="table">
+                                <tbody>
+                                    <tr>
+                                        <th scope="row">Clase:</th>
+                                        <td><t t-esc="mascota.pet_class"/></td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">Raza:</th>
+                                        <td><t t-esc="mascota.breed"/></td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">Localidad:</th>
+                                        <td><t t-esc="mascota.location"/></td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">Asociación:</th>
+                                        <td><t t-esc="mascota.asociation.name"/></td>
+                                    </tr>
+                                    
+                                    <tr>
+                                        <th scope="row">Tamaño:</th>
+                                        <td><t t-esc="mascota.size"/></td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">Fecha de Ingreso:</th>
+                                        <td><t t-esc="mascota.entry_date"/></td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">Sexo:</th>
+                                        <td><t t-esc="mascota.sex"/></td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">Peso:</th>
+                                        <td><t t-esc="mascota.weight"/></td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">Altura:</th>
+                                        <td><t t-esc="mascota.height"/></td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">Fecha de Nacimiento:</th>
+                                        <td><t t-esc="mascota.birth_date"/></td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">Teléfono de Contacto</th>
+                                        <td><t t-esc="mascota.contact_phone"/></td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">Edad:</th>
+                                        <td><t t-esc="mascota.age"/></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-12 mt-3 mb-3">
+                    <div class="card">
+                        <div class="card-body bg-white">
+                            <p class="card-text">Descripción: <t t-esc="mascota.description"/></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </t>
+</template>
+
+
+</odoo>

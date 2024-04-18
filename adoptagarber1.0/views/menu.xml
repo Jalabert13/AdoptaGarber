@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+     
+        <!-- Menús -->
+        <menuitem id="menu_adopcion_mascotas"
+                  name="Adopción de Mascotas"
+                  sequence="10"/>
+
+        <menuitem id="menu_adopcion_root"
+                  name="Operaciones"
+                  parent="menu_adopcion_mascotas"
+                  sequence="10"/>
+
+        <menuitem id="menu_mascotas"
+                  name="Mascotas Adoptadas"
+                  parent="menu_adopcion_mascotas"
+                  sequence="10"/>
+
+    </data>
+</odoo>

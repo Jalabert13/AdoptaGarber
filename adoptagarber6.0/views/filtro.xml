@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+  <!-- Template definition for animal adoption search and display -->
+  <template id="filtro_busqueda_animales" name="Adopciones">
+    <!-- Inherit from website layout -->
+    <t t-call="website.layout">
+        <!-- Structure for layout -->
+        <div class="oe_structure"/>
+
+        <!-- Inserting custom content after a specific form -->
+        <xpath expr="//form[@action='/adopta-results']" position="after">
+            <div class="container mt-5 p-4 border border-dark p-2">
+                <!-- Heading for search filter -->
+                <h2 class="text-center mb-4">Filtro de Búsqueda de Animales en el Albergue</h2>
+                
+                <!-- Form for filtering animal search -->
+                <form action="/adoptions" method="GET">
+                    <!-- Select input for pet class -->
+                    <div class="row mb-3">
+                        <div class="form-group col-md-6">
+                            <label for="pet_class">Tipo del animal:</label>
+                            <select class="form-control" id="pet_class" name="pet_class">
+                                <option value="">Selecciona un Tipo</option>
+                                <!-- Loop through pet classes -->
+                                <t t-foreach="pet_classes" t-as="pet_class">
+                                    <option t-att-value="pet_class">
+                                        <t t-esc="pet_class"/>
+                                    </option>
+                                </t>
+                            </select>                            
+                        </div>
+
+                        <!-- Select input for breed -->
+                        <div class="form-group col-md-6">
+                            <label for="breed">Raza del animal:</label>
+                            <select class="form-control" id="breed" name="breed">
+                                <option value="">Selecciona una raza</option>
+                                <!-- Loop through breeds -->
+                                <t t-foreach="breeds" t-as="breed">
+                                    <option t-att-value="breed">
+                                        <t t-esc="breed"/>
+                                    </option>
+                                </t>
+                            </select>                            
+                        </div>
+                    </div>
+
+                    <!-- Select input for sex -->
+                    <div class="row mb-3">
+                        <div class="form-group col-md-12">
+                            <label for="sex">Sexo del animal:</label>
+                            <select class="form-control" id="sex" name="sex">
+                                <option value="">Selecciona sexo</option>
+                                <!-- Options for male and female sex -->
+                                <option value="macho">Macho</option>
+                                <option value="hembra">Hembra</option>
+                            </select>                            
+                        </div>
+                    </div>
+
+                    <!-- Button to submit the search -->
+                    <button type="submit" class="btn btn-warning mt-3">Buscar</button>
+                </form>
+            </div>
+        </xpath>
+
+        <!-- Structure for layout -->
+        <div class="oe_structure"/>
+
+        <!-- Section for displaying search results -->
+        <!-- Heading for search results -->
+        <div class="container mt-5 mb-5 p-4">
+            <h2 class="text-center mb-4">Resultados de la Búsqueda</h2>
+            <div class="row">
+                <!-- Check if animals are found -->
+                <t t-if="animals" t-foreach="animals" t-as="mascota">
+                    <!-- Display each animal -->
+                    <div class="col-lg-3 col-md-4 col-sm-6 mt-3 mb-3 card-clickable" t-att-data-mascota-id="mascota.id">
+                        <div class="card">    
+                            <!-- Display animal image -->
+                            <img class="img img-fluid d-block mx-auto mb-1 p-2" style="height: 15rem;" t-att-src="'data:image/png;base64,' + mascota.image.decode()" alt=""/> 
+                            
+                            <!-- Display animal information -->
+                            <div class="card-body bg-white">
+                                <h5 class="card-title"><t t-esc="mascota.name"/></h5>
+                                <p class="card-text">Raza: <t t-esc="mascota.breed"/></p>
+                                <p class="card-text">Localidad: <t t-esc="mascota.location"/></p>
+                                <p class="card-text">Asociación: <t t-esc="mascota.asociation.name"/></p>
+                            </div>
+                        </div>    
+                    </div>
+                </t>
+                <!-- If no animals are found, display a message -->
+                <t t-if="not animals">
+                    <div class="text-center">
+                        <p>No se encontraron mascotas que coincidan con los criterios de búsqueda.</p>
+                    </div>
+                </t>
+            </div>
+        </div>
+    </t>
+  </template>
+</odoo>

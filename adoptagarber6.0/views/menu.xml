@@ -1,0 +1,42 @@
+<odoo>
+    <data>
+     
+        <!-- Menus -->
+        
+        <!-- Menu for Pet Adoption -->
+        <menuitem id="menu_adopcion_mascotas"
+                  name="Adopción de Mascotas"
+                  sequence="10"/>
+
+        <!-- Root menu for operations related to pet adoption -->
+        <menuitem id="menu_adopcion_root"
+                  name="Operaciones"
+                  parent="menu_adopcion_mascotas"
+                  sequence="10"/>
+
+        <!-- Menu for displaying adopted pets -->
+        <menuitem id="menu_mascotas"
+                  name="Mascotas Adoptadas"
+                  parent="menu_adopcion_mascotas"
+                  sequence="10"/>
+
+        <!-- Menu for testing purposes -->
+        <menuitem id="menu_pruebas"
+                  name="Pruebas"
+                  parent="menu_adopcion_mascotas"
+                  sequence="10"/>
+                  
+        <!-- Menu for technical operations -->
+        <menuitem id="menu_tecnico"
+                name="Técnico"
+                parent="menu_adopcion_mascotas"
+                sequence="10"/>
+
+        <!-- Menu for SQL operations -->
+        <menuitem id="menu_query"
+                name="SQL"
+                parent="menu_tecnico"
+                sequence="10"/>
+
+    </data>
+</odoo>
